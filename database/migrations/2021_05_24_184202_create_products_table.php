@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->bigInteger('brand_id')->unsigned()->nullable();
             $table->string('name', 200);
             $table->text('content')->nullable();
-            $table->string('slug', 200)->unique();
+            $table->string('slug', 200);
             $table->string('image')->nullable();
             $table->decimal('price', 10, 2, true)->default(0);
             $table->timestamps();

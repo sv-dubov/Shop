@@ -19,3 +19,9 @@ Route::get('/catalog/index', 'App\Http\Controllers\CatalogController@index')->na
 Route::get('/catalog/category/{slug}', 'App\Http\Controllers\CatalogController@category')->name('catalog.category');
 Route::get('/catalog/brand/{slug}', 'App\Http\Controllers\CatalogController@brand')->name('catalog.brand');
 Route::get('/catalog/product/{slug}', 'App\Http\Controllers\CatalogController@product')->name('catalog.product');
+
+Route::get('/basket/index', 'App\Http\Controllers\BasketController@index')->name('basket.index');
+Route::get('/basket/checkout', 'App\Http\Controllers\BasketController@checkout')->name('basket.checkout');
+Route::post('/basket/add/{id}', 'App\Http\Controllers\BasketController@add')
+    ->where('id', '[0-9]+')
+    ->name('basket.add');
