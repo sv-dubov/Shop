@@ -26,16 +26,20 @@
                 <div class="card-footer">
                     <div class="row">
                         <div class="col-md-6">
-                            Category:
-                            <a href="{{ route('catalog.category', ['slug' => $product->category_slug]) }}">
-                                {{ $product->category_name }}
-                            </a>
+                            @isset($product->category)
+                                Category:
+                                <a href="{{ route('catalog.category', ['slug' => $product->category->slug]) }}">
+                                    {{ $product->category->name }}
+                                </a>
+                            @endisset
                         </div>
                         <div class="col-md-6 text-right">
-                            Brand:
-                            <a href="{{ route('catalog.brand', ['slug' => $product->brand_slug]) }}">
-                                {{ $product->brand_name }}
-                            </a>
+                            @isset($product->brand)
+                                Brand:
+                                <a href="{{ route('catalog.brand', ['slug' => $product->brand->slug]) }}">
+                                    {{ $product->brand->name }}
+                                </a>
+                            @endisset
                         </div>
                     </div>
                 </div>

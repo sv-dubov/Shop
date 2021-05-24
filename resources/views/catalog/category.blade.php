@@ -4,8 +4,8 @@
     <h1>{{ $category->name }}</h1>
     <p>{{ $category->content }}</p>
     <div class="row">
-        @foreach ($products as $product)
-            @include('catalog.partial.product', ['product' => $product])
+        @foreach ($category->products as $product)
+            @include('partal.product')
         @endforeach
     </div>
 @endsection
