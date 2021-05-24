@@ -46,6 +46,20 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('basket.index') }}">Basket</a>
                 </li>
+                @guest
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('user.login') }}">Login</a>
+                    </li>
+                    @if (Route::has('user.register'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user.register') }}">Register</a>
+                        </li>
+                    @endif
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('user.index') }}">Cabinet</a>
+                    </li>
+                @endif
             </ul>
         </div>
     </nav>
@@ -56,6 +70,14 @@
             @include('layout.partial.brands')
         </div>
         <div class="col-md-9">
+            @if ($message = Session::get('success'))
+                <div class="alert alert-success alert-dismissible mt-4" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Закрыть">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{ $message }}
+                </div>
+            @endif
             @yield('content')
         </div>
     </div>

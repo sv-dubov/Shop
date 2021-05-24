@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,3 +36,8 @@ Route::post('/basket/remove/{id}', 'App\Http\Controllers\BasketController@remove
     ->where('id', '[0-9]+')
     ->name('basket.remove');
 Route::post('/basket/clear', 'App\Http\Controllers\BasketController@clear')->name('basket.clear');
+
+Route::name('user.')->prefix('user')->group(function () {
+    Route::get('index', 'App\Http\Controllers\UserController@index')->name('index');
+    Auth::routes();
+});

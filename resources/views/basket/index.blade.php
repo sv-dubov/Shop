@@ -23,7 +23,7 @@
             @foreach($products as $product)
                 @php
                     $itemPrice = $product->price;
-                    $itemQuantity =  $product->pivot->quantity;
+                    $itemQuantity = $product->pivot->quantity;
                     $itemCost = $itemPrice * $itemQuantity;
                     $basketCost = $basketCost + $itemCost;
                 @endphp
