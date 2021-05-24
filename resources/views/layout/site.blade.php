@@ -14,7 +14,7 @@
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <!-- Brand and button «Hamburger» -->
-        <a class="navbar-brand" href="/">Shop</a>
+        <a class="navbar-brand" href="{{ route('index') }}">Shop</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
                 data-target="#navbar-example" aria-controls="navbar-example"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -25,7 +25,7 @@
             <!-- Left side block -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Catalog</a>
+                    <a class="nav-link" href="{{ route('catalog.index') }}">Catalog</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Delivery</a>
@@ -34,12 +34,18 @@
                     <a class="nav-link" href="#">Contacts</a>
                 </li>
             </ul>
-            <!-- Right side block -->
+            <!-- Center side block -->
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search"
                        placeholder="Поиск по каталогу" aria-label="Search">
                 <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
             </form>
+            <!-- Right side block -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('basket.index') }}">Basket</a>
+                </li>
+            </ul>
         </div>
     </nav>
 

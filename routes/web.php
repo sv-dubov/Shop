@@ -25,3 +25,13 @@ Route::get('/basket/checkout', 'App\Http\Controllers\BasketController@checkout')
 Route::post('/basket/add/{id}', 'App\Http\Controllers\BasketController@add')
     ->where('id', '[0-9]+')
     ->name('basket.add');
+Route::post('/basket/plus/{id}', 'App\Http\Controllers\BasketController@plus')
+    ->where('id', '[0-9]+')
+    ->name('basket.plus');
+Route::post('/basket/minus/{id}', 'App\Http\Controllers\BasketController@minus')
+    ->where('id', '[0-9]+')
+    ->name('basket.minus');
+Route::post('/basket/remove/{id}', 'App\Http\Controllers\BasketController@remove')
+    ->where('id', '[0-9]+')
+    ->name('basket.remove');
+Route::post('/basket/clear', 'App\Http\Controllers\BasketController@clear')->name('basket.clear');
