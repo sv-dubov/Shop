@@ -1,4 +1,4 @@
-@extends('layout.admin')
+@extends('layout.admin', ['title' => 'Edit category'])
 
 @section('content')
     <h1>Edit category</h1>

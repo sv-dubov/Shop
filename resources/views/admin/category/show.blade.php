@@ -1,7 +1,7 @@
-@extends('layout.admin')
+@extends('layout.admin', ['title' => 'View category'])
 
 @section('content')
-    <h1>View categories</h1>
+    <h1>View category</h1>
     <div class="row">
         <div class="col-md-6">
             <p><strong>Name:</strong> {{ $category->name }}</p>

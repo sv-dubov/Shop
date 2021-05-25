@@ -23,18 +23,10 @@ Route::get('/catalog/product/{slug}', 'App\Http\Controllers\CatalogController@pr
 
 Route::get('/basket/index', 'App\Http\Controllers\BasketController@index')->name('basket.index');
 Route::get('/basket/checkout', 'App\Http\Controllers\BasketController@checkout')->name('basket.checkout');
-Route::post('/basket/add/{id}', 'App\Http\Controllers\BasketController@add')
-    ->where('id', '[0-9]+')
-    ->name('basket.add');
-Route::post('/basket/plus/{id}', 'App\Http\Controllers\BasketController@plus')
-    ->where('id', '[0-9]+')
-    ->name('basket.plus');
-Route::post('/basket/minus/{id}', 'App\Http\Controllers\BasketController@minus')
-    ->where('id', '[0-9]+')
-    ->name('basket.minus');
-Route::post('/basket/remove/{id}', 'App\Http\Controllers\BasketController@remove')
-    ->where('id', '[0-9]+')
-    ->name('basket.remove');
+Route::post('/basket/add/{id}', 'App\Http\Controllers\BasketController@add')->where('id', '[0-9]+')->name('basket.add');
+Route::post('/basket/plus/{id}', 'App\Http\Controllers\BasketController@plus')->where('id', '[0-9]+')->name('basket.plus');
+Route::post('/basket/minus/{id}', 'App\Http\Controllers\BasketController@minus')->where('id', '[0-9]+')->name('basket.minus');
+Route::post('/basket/remove/{id}', 'App\Http\Controllers\BasketController@remove')->where('id', '[0-9]+')->name('basket.remove');
 Route::post('/basket/clear', 'App\Http\Controllers\BasketController@clear')->name('basket.clear');
 Route::post('/basket/saveorder', 'App\Http\Controllers\BasketController@saveOrder')->name('basket.saveorder');
 Route::get('/basket/success', 'App\Http\Controllers\BasketController@success')->name('basket.success');
@@ -48,11 +40,3 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')-
     Route::get('index', 'IndexController')->name('index');
     Route::resource('category', 'CategoryController');
 });
-
-/*Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')->group(function () {
-    Route::get('index', 'IndexController')->name('index');
-});*/
-
-/*Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin', 'middleware' => ['auth', 'admin']], function () {
-    Route::get('index', 'IndexController')->name('index');
-});*/
