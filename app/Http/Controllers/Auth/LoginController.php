@@ -40,8 +40,14 @@ class LoginController extends Controller
     }
 
     protected function authenticated(Request $request, $user) {
-        return redirect()->route('user.index')
-            ->with('success', 'You have entered personal cabinet');
+        $route = 'user.index';
+        $message = 'You have entered personal cabinet';
+        if ($user->admin) {
+            $route = 'admin.index';
+            $message = 'You have entered admin panel';
+        }
+        return redirect()->route($route)
+            ->with('success', $message);
     }
 
     protected function loggedOut(Request $request) {

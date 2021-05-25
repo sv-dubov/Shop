@@ -41,3 +41,15 @@ Route::name('user.')->prefix('user')->group(function () {
     Route::get('index', 'App\Http\Controllers\UserController@index')->name('index');
     Auth::routes();
 });
+
+Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')->middleware(['auth', 'admin'])->group(function () {
+    Route::get('index', 'IndexController')->name('index');
+});
+
+/*Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')->group(function () {
+    Route::get('index', 'IndexController')->name('index');
+});*/
+
+/*Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin', 'middleware' => ['auth', 'admin']], function () {
+    Route::get('index', 'IndexController')->name('index');
+});*/

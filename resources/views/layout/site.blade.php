@@ -44,7 +44,10 @@
             <!-- Right side block -->
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('basket.index') }}">Basket</a>
+                    <a class="nav-link @if ($positions) text-success @endif" href="{{ route('basket.index') }}">
+                        Basket
+                        @if ($positions) ({{ $positions }}) @endif
+                    </a>
                 </li>
                 @guest
                     <li class="nav-item">
@@ -72,7 +75,7 @@
         <div class="col-md-9">
             @if ($message = Session::get('success'))
                 <div class="alert alert-success alert-dismissible mt-4" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Закрыть">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                     {{ $message }}
