@@ -36,6 +36,8 @@ Route::post('/basket/remove/{id}', 'App\Http\Controllers\BasketController@remove
     ->where('id', '[0-9]+')
     ->name('basket.remove');
 Route::post('/basket/clear', 'App\Http\Controllers\BasketController@clear')->name('basket.clear');
+Route::post('/basket/saveorder', 'App\Http\Controllers\BasketController@saveOrder')->name('basket.saveorder');
+Route::get('/basket/success', 'App\Http\Controllers\BasketController@success')->name('basket.success');
 
 Route::name('user.')->prefix('user')->group(function () {
     Route::get('index', 'App\Http\Controllers\UserController@index')->name('index');

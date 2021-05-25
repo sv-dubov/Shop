@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Basket;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class BasketController extends Controller
@@ -46,5 +47,40 @@ class BasketController extends Controller
     public function clear() {
         $this->basket->delete();
         return redirect()->route('basket.index');
+    }
+
+    public function saveOrder(Request $request) {
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|max:255',
+            'address' => 'required',
+        ]);
+        $basket = Basket::getBasket();
+        $user_id = auth()->check() ? auth()->user()->id : null;
+        $order = Order::create(
+            $request->all() + ['amount' => $basket->getAmount(), 'user_id' => $user_id]
+        );
+        foreach ($basket->products as $product) {
+            $order->items()->create([
+                'product_id' => $product->id,
+                'name' => $product->name,
+                'price' => $product->price,
+                'quantity' => $product->pivot->quantity,
+                'cost' => $product->price * $product->pivot->quantity,
+            ]);
+        }
+        $basket->delete();
+        return redirect()->route('basket.success')->with('order_id', $order->id);
+    }
+
+    public function success(Request $request) {
+        if ($request->session()->exists('order_id')) {
+            $order_id = $request->session()->pull('order_id');
+            $order = Order::findOrFail($order_id);
+            return view('basket.success', compact('order'));
+        } else {
+            return redirect()->route('basket.index');
+        }
     }
 }
