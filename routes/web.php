@@ -46,6 +46,7 @@ Route::name('user.')->prefix('user')->group(function () {
 
 Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('index', 'IndexController')->name('index');
+    Route::resource('category', 'CategoryController');
 });
 
 /*Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')->group(function () {
