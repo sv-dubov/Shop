@@ -39,7 +39,7 @@
                     <a class="nav-link" href="{{route('admin.category.index')}}">Categories</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Brands</a>
+                    <a class="nav-link" href="{{route('admin.brand.index')}}">Brands</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Products</a>
