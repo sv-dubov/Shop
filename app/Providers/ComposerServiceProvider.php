@@ -28,10 +28,11 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer('layout.partial.roots', function($view) {
-            $view->with(['items' => Category::roots()]);
+            $view->with(['items' => Category::all()]);
         });
         View::composer('layout.partial.brands', function($view) {
-            $view->with(['items' => Brand::popular()]);
+            //$view->with(['items' => Brand::popular()]);
+            $view->with(['items' => Brand::all()]);
         });
         View::composer('layout.site', function($view) {
             $view->with(['positions' => Basket::getBasket()->products->count()]);
