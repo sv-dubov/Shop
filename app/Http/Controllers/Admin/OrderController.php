@@ -1,0 +1,39 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use App\Models\Order;
+use Illuminate\Http\Request;
+
+class OrderController extends Controller
+{
+    public function index() {
+        /*$orders = Order::orderBy('created_at', 'desc')->paginate(5);
+        return view('admin.order.index',compact('orders'));*/
+        $orders = Order::orderBy('status', 'asc')->paginate(5);
+        $statuses = Order::STATUSES;
+        return view('admin.order.index',compact('orders', 'statuses'));
+    }
+
+    //View single order
+    public function show(Order $order) {
+        //return view('admin.order.show', compact('order'));
+        $statuses = Order::STATUSES;
+        return view('admin.order.show', compact('order', 'statuses'));
+    }
+
+    //Edit single order
+    public function edit(Order $order) {
+        //return view('admin.order.edit', compact('order'));
+        $statuses = Order::STATUSES;
+        return view('admin.order.edit', compact('order', 'statuses'));
+    }
+
+    public function update(Request $request, Order $order) {
+        $order->update($request->all());
+        return redirect()
+            ->route('admin.order.show', ['order' => $order->id])
+            ->with('success', 'Order was updated');
+    }
+}

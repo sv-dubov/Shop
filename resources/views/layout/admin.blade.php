@@ -30,7 +30,7 @@
             <!-- Left side block -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Orders</a>
+                    <a class="nav-link" href="{{route('admin.order.index')}}">Orders</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Catalog</a>
