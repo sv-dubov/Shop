@@ -42,7 +42,7 @@
                     <a class="nav-link" href="{{route('admin.brand.index')}}">Brands</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Products</a>
+                    <a class="nav-link" href="{{route('admin.product.index')}}">Products</a>
                 </li>
             </ul>
             <!-- Right side block -->

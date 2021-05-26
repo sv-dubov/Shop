@@ -40,4 +40,6 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')-
     Route::get('index', 'IndexController')->name('index');
     Route::resource('category', 'CategoryController');
     Route::resource('brand', 'BrandController');
+    Route::resource('product', 'ProductController');
+    Route::get('product/category/{category}', 'ProductController@category')->name('product.category');
 });
