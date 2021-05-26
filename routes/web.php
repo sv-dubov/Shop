@@ -43,4 +43,5 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')-
     Route::resource('product', 'ProductController');
     Route::get('product/category/{category}', 'ProductController@category')->name('product.category');
     Route::resource('order', 'OrderController', ['except' => ['create', 'store', 'destroy']]);
+    Route::resource('user', 'UserController', ['except' => ['create', 'store', 'show', 'destroy']]);
 });

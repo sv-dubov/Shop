@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
 
 class User extends Authenticatable
 {
@@ -40,4 +41,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getCreatedAtAttribute($value) {
+        return Carbon::createFromFormat('Y-m-d H:i:s', $value)->timezone('Europe/Kiev');
+    }
+
+    public function getUpdatedAtAttribute($value) {
+        return Carbon::createFromFormat('Y-m-d H:i:s', $value)->timezone('Europe/Kiev');
+    }
 }
