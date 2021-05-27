@@ -49,4 +49,8 @@ class User extends Authenticatable
     public function getUpdatedAtAttribute($value) {
         return Carbon::createFromFormat('Y-m-d H:i:s', $value)->timezone('Europe/Kiev');
     }
+
+    public function profiles() {
+        return $this->hasMany(Profile::class);
+    }
 }

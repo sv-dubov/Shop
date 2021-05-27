@@ -30,12 +30,18 @@ Route::post('/basket/remove/{id}', 'App\Http\Controllers\BasketController@remove
 Route::post('/basket/clear', 'App\Http\Controllers\BasketController@clear')->name('basket.clear');
 Route::post('/basket/saveorder', 'App\Http\Controllers\BasketController@saveOrder')->name('basket.saveorder');
 Route::get('/basket/success', 'App\Http\Controllers\BasketController@success')->name('basket.success');
+Route::post('/basket/profile', 'App\Http\Controllers\BasketController@profile')->name('basket.profile');
 
 Route::get('page/{page:slug}', 'App\Http\Controllers\PageController')->name('page.show');
 
 Route::name('user.')->prefix('user')->group(function () {
-    Route::get('index', 'App\Http\Controllers\UserController@index')->name('index');
+    //Route::get('index', 'App\Http\Controllers\UserController@index')->name('index');
     Auth::routes();
+});
+
+Route::group(['as' => 'user.', 'prefix' => 'user', 'middleware' => ['auth']], function () {
+    Route::get('index', 'App\Http\Controllers\UserController@index')->name('index');
+    Route::resource('profile', 'App\Http\Controllers\ProfileController');
 });
 
 Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')->middleware(['auth', 'admin'])->group(function () {

@@ -19,8 +19,18 @@ class BasketController extends Controller
         return view('basket.index', compact('products'));
     }
 
-    public function checkout() {
-        return view('basket.checkout');
+    public function checkout(Request $request) {
+        $profile = null;
+        $profiles = null;
+        if (auth()->check()) {
+            $user = auth()->user();
+            $profiles = $user->profiles;
+            $prof_id = (int)$request->input('profile_id');
+            if ($prof_id) {
+                $profile = $user->profiles()->whereIdAndUserId($prof_id, $user->id)->first();
+            }
+        }
+        return view('basket.checkout', compact('profiles', 'profile'));
     }
 
     public function add(Request $request, $id) {
@@ -82,5 +92,23 @@ class BasketController extends Controller
         } else {
             return redirect()->route('basket.index');
         }
+    }
+
+    public function profile(Request $request) {
+        if ( ! $request->ajax()) {
+            abort(404);
+        }
+        if ( ! auth()->check()) {
+            return response()->json(['error' => 'Auth needed!'], 404);
+        }
+        $user = auth()->user();
+        $profile_id = (int)$request->input('profile_id');
+        if ($profile_id) {
+            $profile = $user->profiles()->whereIdAndUserId($profile_id, $user->id)->first();
+            if ($profile) {
+                return response()->json(['profile' => $profile]);
+            }
+        }
+        return response()->json(['error' => 'Profile was not found!'], 404);
     }
 }

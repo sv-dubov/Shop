@@ -10,8 +10,15 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <img src="https://via.placeholder.com/400x400"
-                                 alt="" class="img-fluid">
+                            {{--<img src="https://via.placeholder.com/400x400" alt="" class="img-fluid">--}}
+                            @php
+                                if ($product->image) {
+                                    $url = url('storage/catalog/product/image/' . $product->image);
+                                } else {
+                                    $url = url('storage/catalog/product/image/default.jpg');
+                                }
+                            @endphp
+                            <img src="{{ $url }}" alt="" class="img-fluid">
                         </div>
                         <div class="col-md-6">
                             <p>Price: {{ number_format($product->price, 2, '.', '') }}</p>
