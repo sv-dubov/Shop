@@ -30,7 +30,37 @@
     <textarea class="form-control" name="content" placeholder="Description" rows="4">{{ old('content') ?? $product->content ?? '' }}</textarea>
 </div>
 <div class="form-group">
-    <input type="number" class="form-control" name="price" placeholder="Price" value="{{ old('price') ?? $product->price ?? '' }}">
+    <input type="text" class="form-control" name="price" placeholder="Price" value="{{ old('price') ?? $product->price ?? '' }}">
+    <div class="form-check form-check-inline">
+        @php
+            $checked = false;
+            if (isset($product)) $checked = $product->new;
+            if (old('new')) $checked = true;
+        @endphp
+        <input type="checkbox" name="new" class="form-check-input" id="new-product"
+               @if($checked) checked @endif value="1">
+        <label class="form-check-label" for="new-product">New</label>
+    </div>
+    <div class="form-check form-check-inline">
+        @php
+            $checked = false;
+            if (isset($product)) $checked = $product->hit;
+            if (old('hit')) $checked = true;
+        @endphp
+        <input type="checkbox" name="hit" class="form-check-input" id="hit-product"
+               @if($checked) checked @endif value="1">
+        <label class="form-check-label" for="hit-product">Hit</label>
+    </div>
+    <div class="form-check form-check-inline ">
+        @php
+            $checked = false;
+            if (isset($product)) $checked = $product->sale;
+            if (old('sale')) $checked = true;
+        @endphp
+        <input type="checkbox" name="sale" class="form-check-input" id="sale-product"
+               @if($checked) checked @endif value="1">
+        <label class="form-check-label" for="sale-product">Sale</label>
+    </div>
 </div>
 <div class="form-group">
     <input type="file" class="form-control-file" name="image" accept="image/png, image/jpeg">

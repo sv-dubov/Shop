@@ -9,16 +9,24 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-6">
-                            {{--<img src="https://via.placeholder.com/400x400" alt="" class="img-fluid">--}}
-                            @php
-                                if ($product->image) {
-                                    $url = url('storage/catalog/product/image/' . $product->image);
-                                } else {
-                                    $url = url('storage/catalog/product/image/default.jpg');
-                                }
-                            @endphp
-                            <img src="{{ $url }}" alt="" class="img-fluid">
+                        <div class="card-body p-0 position-relative">
+                            <div class="position-absolute">
+                                @if($product->new)
+                                    <span class="badge badge-info text-white ml-1">New</span>
+                                @endif
+                                @if($product->hit)
+                                    <span class="badge badge-danger ml-1">Hit</span>
+                                @endif
+                                @if($product->sale)
+                                    <span class="badge badge-success ml-1">Sale</span>
+                                @endif
+                            </div>
+                            @if($product->image)
+                                @php $url = url('storage/catalog/product/image/' . $product->image) @endphp
+                                <img src="{{ $url }}" alt="" class="img-fluid">
+                            @else
+                                <img src="https://via.placeholder.com/600x300" alt="" class="img-fluid">
+                            @endif
                         </div>
                         <div class="col-md-6">
                             <p>Price: {{ number_format($product->price, 2, '.', '') }}</p>
