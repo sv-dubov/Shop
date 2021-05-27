@@ -31,6 +31,8 @@ Route::post('/basket/clear', 'App\Http\Controllers\BasketController@clear')->nam
 Route::post('/basket/saveorder', 'App\Http\Controllers\BasketController@saveOrder')->name('basket.saveorder');
 Route::get('/basket/success', 'App\Http\Controllers\BasketController@success')->name('basket.success');
 
+Route::get('page/{page:slug}', 'App\Http\Controllers\PageController')->name('page.show');
+
 Route::name('user.')->prefix('user')->group(function () {
     Route::get('index', 'App\Http\Controllers\UserController@index')->name('index');
     Auth::routes();
@@ -44,4 +46,7 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')-
     Route::get('product/category/{category}', 'ProductController@category')->name('product.category');
     Route::resource('order', 'OrderController', ['except' => ['create', 'store', 'destroy']]);
     Route::resource('user', 'UserController', ['except' => ['create', 'store', 'show', 'destroy']]);
+    Route::resource('page', 'PageController');
+    Route::post('page/upload/image', 'PageController@uploadImage')->name('page.upload.image');
+    Route::delete('page/remove/image', 'PageController@removeImage')->name('page.remove.image');
 });

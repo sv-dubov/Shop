@@ -11,15 +11,22 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
           crossorigin="anonymous"/>
+    <!-- wysiwyg css -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!-- wysiwyg js -->
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/lang/summernote-uk-UA.min.js"></script>
+    {{--<script src="{{ asset('js/app.js') }}"></script>--}}
     <script src="{{ asset('js/admin.js') }}"></script>
+
 </head>
 <body>
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
         <!-- Brand and button «Hamburger» -->
-        <a class="navbar-brand" href="{{ route('admin.index') }}">Панель управления</a>
+        <a class="navbar-brand" href="{{ route('admin.index') }}">Admin panel</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
                 data-target="#navbar-example" aria-controls="navbar-example"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -29,6 +36,12 @@
         <div class="collapse navbar-collapse" id="navbar-example">
             <!-- Left side block -->
             <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('admin.user.index')}}">Users</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('admin.page.index')}}">Pages</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('admin.order.index')}}">Orders</a>
                 </li>

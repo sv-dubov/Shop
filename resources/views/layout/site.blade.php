@@ -28,12 +28,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('catalog.index') }}">Catalog</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Delivery</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contacts</a>
-                </li>
+                @include('layout.partial.pages')
             </ul>
             <!-- Center side block -->
             <form class="form-inline my-2 my-lg-0">
