@@ -27,8 +27,7 @@
                                   method="post" class="form-inline">
                                 @csrf
                                 <label for="input-quantity">Quantity</label>
-                                <input type="text" name="quantity" id="input-quantity" value="1"
-                                       class="form-control mx-2 w-25">
+                                <input type="text" name="quantity" id="input-quantity" value="1" class="form-control mx-2 w-25">
                                 <button type="submit" class="btn btn-success">Add to basket</button>
                             </form>
                         </div>
@@ -44,7 +43,7 @@
                         <div class="col-md-6">
                             @isset($product->category)
                                 Category:
-                                <a href="{{ route('catalog.category', ['slug' => $product->category->slug]) }}">
+                                <a href="{{ route('catalog.category', [$product->category->slug]) }}">
                                     {{ $product->category->name }}
                                 </a>
                             @endisset
@@ -52,7 +51,7 @@
                         <div class="col-md-6 text-right">
                             @isset($product->brand)
                                 Brand:
-                                <a href="{{ route('catalog.brand', ['slug' => $product->brand->slug]) }}">
+                                <a href="{{ route('catalog.brand', [$product->brand->slug]) }}">
                                     {{ $product->brand->name }}
                                 </a>
                             @endisset

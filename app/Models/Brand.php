@@ -26,6 +26,10 @@ class Brand extends Model
         return $this->hasMany(Product::class);
     }
 
+    public function products() {
+        return $this->hasMany(Product::class);
+    }
+
     //not popular products, only which have the highest quantity
     public static function popular() {
         //return self::withCount('products')->orderByDesc('products_count')->limit(5)->get();

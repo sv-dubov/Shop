@@ -17,9 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'App\Http\Controllers\IndexController')->name('index');
 
 Route::get('/catalog/index', 'App\Http\Controllers\CatalogController@index')->name('catalog.index');
-Route::get('/catalog/category/{slug}', 'App\Http\Controllers\CatalogController@category')->name('catalog.category');
-Route::get('/catalog/brand/{slug}', 'App\Http\Controllers\CatalogController@brand')->name('catalog.brand');
-Route::get('/catalog/product/{slug}', 'App\Http\Controllers\CatalogController@product')->name('catalog.product');
+//Route::get('/catalog/category/{slug}', 'App\Http\Controllers\CatalogController@category')->name('catalog.category');
+//Route::get('/catalog/brand/{slug}', 'App\Http\Controllers\CatalogController@brand')->name('catalog.brand');
+//Route::get('/catalog/product/{slug}', 'App\Http\Controllers\CatalogController@product')->name('catalog.product');
+Route::get('/catalog/category/{category:slug}', 'App\Http\Controllers\CatalogController@category')->name('catalog.category');
+Route::get('/catalog/brand/{brand:slug}', 'App\Http\Controllers\CatalogController@brand')->name('catalog.brand');
+Route::get('/catalog/product/{product:slug}', 'App\Http\Controllers\CatalogController@product')->name('catalog.product');
 
 Route::get('/basket/index', 'App\Http\Controllers\BasketController@index')->name('basket.index');
 Route::get('/basket/checkout', 'App\Http\Controllers\BasketController@checkout')->name('basket.checkout');
@@ -35,7 +38,6 @@ Route::post('/basket/profile', 'App\Http\Controllers\BasketController@profile')-
 Route::get('page/{page:slug}', 'App\Http\Controllers\PageController')->name('page.show');
 
 Route::name('user.')->prefix('user')->group(function () {
-    //Route::get('index', 'App\Http\Controllers\UserController@index')->name('index');
     Auth::routes();
 });
 
