@@ -41,6 +41,8 @@ Route::name('user.')->prefix('user')->group(function () {
 Route::group(['as' => 'user.', 'prefix' => 'user', 'middleware' => ['auth']], function () {
     Route::get('index', 'App\Http\Controllers\UserController@index')->name('index');
     Route::resource('profile', 'App\Http\Controllers\ProfileController');
+    Route::get('order', 'App\Http\Controllers\OrderController@index')->name('order.index');
+    Route::get('order/{order}', 'App\Http\Controllers\OrderController@show')->name('order.show');
 });
 
 Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')->middleware(['auth', 'admin'])->group(function () {
