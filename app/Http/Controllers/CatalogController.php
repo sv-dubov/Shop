@@ -21,8 +21,8 @@ class CatalogController extends Controller
         return view('catalog.category', compact('category', 'products'));
     }
 
-    public function brand(Brand $brand) {
-        $products = $brand->products()->paginate(5);
+    public function brand(Brand $brand, ProductFilter $filters) {
+        $products = $brand->products()->filterProducts($filters)->paginate(6)->withQueryString();
         return view('catalog.brand', compact('brand', 'products'));
     }
 
