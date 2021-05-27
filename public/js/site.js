@@ -14,6 +14,7 @@ jQuery(document).ready(function($) {
     $('#catalog-sidebar .badge').on('click', function () {
         var $badge = $(this);
         var closed = $badge.siblings('ul') && !$badge.siblings('ul').is(':visible');
+
         if (closed) {
             $badge.siblings('ul').slideDown('normal', function () {
                 $badge.children('i').removeClass('fa-plus').addClass('fa-minus');

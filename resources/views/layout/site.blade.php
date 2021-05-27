@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $title ?? 'Shop' }}</title>
-    {{--<link rel="stylesheet" href="{{ asset('/css/app.css') }}">--}}
+    <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/site.js') }}"></script>
+    <link rel="stylesheet" href="/css/site.css">
+    @yield('assets')
 </head>
 <body>
 <div class="container">
@@ -92,5 +92,8 @@
         </div>
     </div>
 </div>
+<script src="/js/app.js"></script>
+<script src="/js/site.js"></script>
+@stack('scripts')
 </body>
 </html>

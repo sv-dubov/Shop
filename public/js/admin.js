@@ -1,12 +1,18 @@
-jQuery.noConflict(document).ready(function($) {
+jQuery(document).ready(function($) {
+    /*
+     * Общие настройки ajax-запросов, отправка на сервер csrf-токена
+     */
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
 
+    /*
+     * Подключение wysiwyg-редактора для редактирования контента страницы
+     */
     $('textarea[id="editor"]').summernote({
-        lang: 'uk-UA',
+        lang: 'ru-RU',
         height: 300,
         callbacks: {
             /*
@@ -40,16 +46,15 @@ jQuery.noConflict(document).ready(function($) {
             processData: false,
             dataType: 'json',
             success: function(data) {
-                if (data.errors === undefined) {
-                    $(textarea).summernote('insertImage', data.image, function ($img) {
-                        $img.css('max-width', '100%');
-                    });
-                } else {
-                    $.each(data.errors, function (key, value) {
-                        alert(value);
-                    });
-                }
+                $(textarea).summernote('insertImage', data.image, function ($img) {
+                    $img.css('max-width', '100%');
+                });
             },
+            error: function (reject) {
+                $.each(reject.responseJSON.errors, function (key, value) {
+                    alert(value);
+                });
+            }
         });
     }
     /*
@@ -61,8 +66,8 @@ jQuery.noConflict(document).ready(function($) {
             type: 'POST',
             url: '/admin/page/remove/image',
             cache: false,
-            success: function(msg) {
-                // console.log(msg);
+            success: function(data) {
+                console.log(data);
             }
         });
     }
