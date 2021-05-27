@@ -36,7 +36,11 @@ class BasketController extends Controller
     public function add(Request $request, $id) {
         $quantity = $request->input('quantity') ?? 1;
         $this->basket->increase($id, $quantity);
-        return back();
+        if ( ! $request->ajax()) {
+            return back();
+        }
+        $positions = $this->basket->products->count();
+        return view('basket.partial.basket', compact('positions'));
     }
 
     public function plus($id) {

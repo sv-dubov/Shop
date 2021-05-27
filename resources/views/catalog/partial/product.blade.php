@@ -12,7 +12,7 @@
             @endif
         </div>
         <div class="card-footer">
-            <form action="{{ route('basket.add', ['id' => $product->id]) }}" method="post" class="d-inline">
+            <form action="{{ route('basket.add', ['id' => $product->id]) }}" method="post" class="d-inline add-to-basket">
                 @csrf
                 <button type="submit" class="btn btn-success">To basket</button>
             </form>

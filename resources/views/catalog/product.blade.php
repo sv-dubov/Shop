@@ -23,8 +23,7 @@
                         <div class="col-md-6">
                             <p>Price: {{ number_format($product->price, 2, '.', '') }}</p>
                             <!-- Add product to basket -->
-                            <form action="{{ route('basket.add', ['id' => $product->id]) }}"
-                                  method="post" class="form-inline">
+                            <form action="{{ route('basket.add', ['id' => $product->id]) }}" method="post" class="form-inline add-to-basket">
                                 @csrf
                                 <label for="input-quantity">Quantity</label>
                                 <input type="text" name="quantity" id="input-quantity" value="1" class="form-control mx-2 w-25">

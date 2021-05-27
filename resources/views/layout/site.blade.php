@@ -38,7 +38,7 @@
             </form>
             <!-- Right side block -->
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
+                <li class="nav-item" id="top-basket">
                     <a class="nav-link @if ($positions) text-success @endif" href="{{ route('basket.index') }}">
                         Basket
                         @if ($positions) ({{ $positions }}) @endif
