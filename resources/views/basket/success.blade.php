@@ -1,4 +1,4 @@
-@extends('layout.site')
+@extends('layout.site', ['title' => 'Order placed'])
 
 @section('content')
     <h1>The order was placed</h1>
