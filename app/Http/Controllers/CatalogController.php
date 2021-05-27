@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ProductFilter;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Http\Request;
 
 class CatalogController extends Controller
 {
@@ -14,12 +16,8 @@ class CatalogController extends Controller
         return view('catalog.index', compact('roots', 'brands'));
     }
 
-    public function category(Category $category) {
-        //getting all descendants of the category
-        $descendants = $category->getAllChildren($category->id);
-        $descendants[] = $category->id;
-        //products of the category and its descendants
-        $products = Product::whereIn('category_id', $descendants)->paginate(5);
+    public function category(Category $category, ProductFilter $filters) {
+        $products = Product::categoryProducts($category->id)->filterProducts($filters)->paginate(6)->withQueryString();
         return view('catalog.category', compact('category', 'products'));
     }
 

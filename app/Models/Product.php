@@ -33,4 +33,14 @@ class Product extends Model
     public function baskets() {
         return $this->belongsToMany(Basket::class)->withPivot('quantity');
     }
+
+    public function scopeCategoryProducts($builder, $id) {
+        $descendants = Category::getAllChildren($id);
+        $descendants[] = $id;
+        return $builder->whereIn('category_id', $descendants);
+    }
+
+    public function scopeFilterProducts($builder, $filters) {
+        return $filters->apply($builder);
+    }
 }

@@ -8,6 +8,14 @@
             @include('catalog.partial.category', ['category' => $child])
         @endforeach
     </div>
+    <div class="bg-info p-2 mb-4">
+        <form method="get"
+              action="{{ route('catalog.category', ['category' => $category->slug]) }}">
+            @include('catalog.partial.filter')
+            <a href="{{ route('catalog.category', ['category' => $category->slug]) }}"
+               class="btn btn-light">Reset</a>
+        </form>
+    </div>
     <h5 class="bg-info text-white p-2 mb-4">Category's products</h5>
     <div class="row">
         @foreach ($products as $product)

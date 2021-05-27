@@ -38,7 +38,7 @@ class Category extends Model
         return self::where('parent_id', 0)->with('children')->get();
     }
 
-    public function getAllChildren($id) {
+    public static function getAllChildren($id) {
         //get direct descendants of category with identifier $id
         $children = self::where('parent_id', $id)->with('children')->get();
         $ids = [];
@@ -46,7 +46,7 @@ class Category extends Model
             $ids[] = $child->id;
             //for each direct descendant we get its direct descendants
             if ($child->children->count()) {
-                $ids = array_merge($ids, $this->getAllChildren($child->id));
+                $ids = array_merge($ids, self::getAllChildren($child->id));
             }
         }
         return $ids;
