@@ -13,7 +13,7 @@
         </div>
         <div class="card-footer px-1">
             <a href="{{ route('catalog.brand', ['brand' => $brand->slug]) }}"
-               class="btn btn-dark">Товары бренда</a>
+               class="btn btn-dark">Brand's products</a>
         </div>
     </div>
 </div>

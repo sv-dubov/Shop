@@ -27,7 +27,7 @@ class BrandController extends Controller
     public function store(Request $request) {
         $this->validate($request, [
             'name' => 'required|max:200',
-            'image' => 'mimes:jpeg,jpg,png|max:5000'
+            'image' => 'nullable|mimes:jpeg,png,jpg,gif,svg'
         ]);
         $data = $request->all();
         $data['image'] = $this->imageSaver->upload($request, null, 'brand');

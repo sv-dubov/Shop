@@ -1,4 +1,4 @@
-@extends('layout.admin', ['title' => 'Create profile'])
+@extends('layout.site', ['title' => 'Create profile'])
 
 @section('content')
     <h1>Create profile</h1>

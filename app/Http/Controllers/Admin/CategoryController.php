@@ -18,16 +18,12 @@ class CategoryController extends Controller
 
     public function index()
     {
-        /*$roots = Category::roots();
-        return view('admin.category.index', compact('roots'));*/
         $items = Category::all();
         return view('admin.category.index', compact('items'));
     }
 
     public function create()
     {
-        /*$parents = Category::roots();
-        return view('admin.category.create', compact('parents'));*/
         $items = Category::all();
         return view('admin.category.create', compact('items'));
     }
@@ -37,12 +33,11 @@ class CategoryController extends Controller
         $this->validate($request, [
             'parent_id' => 'integer',
             'name' => 'required|max:200',
-            'image' => 'mimes:jpeg,jpg,png|max:5000'
+            'image' => 'nullable|mimes:jpeg,png,jpg,gif,svg'
         ]);
         $data = $request->all();
         $data['image'] = $this->imageSaver->upload($request, null, 'category');
         $category = Category::create($data);
-        //$category = Category::create($request->all());
         return redirect()
             ->route('admin.category.show', ['category' => $category->id])
             ->with('success', 'New category was created');
@@ -55,8 +50,6 @@ class CategoryController extends Controller
 
     public function edit(Category $category)
     {
-        /*$parents = Category::roots();
-        return view('admin.category.edit', compact('category', 'parents'));*/
         $items = Category::all();
         return view('admin.category.edit', compact('category', 'items'));
     }

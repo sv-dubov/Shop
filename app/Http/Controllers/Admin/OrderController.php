@@ -9,8 +9,6 @@ use Illuminate\Http\Request;
 class OrderController extends Controller
 {
     public function index() {
-        /*$orders = Order::orderBy('created_at', 'desc')->paginate(5);
-        return view('admin.order.index',compact('orders'));*/
         $orders = Order::orderBy('status', 'asc')->paginate(5);
         $statuses = Order::STATUSES;
         return view('admin.order.index',compact('orders', 'statuses'));
@@ -18,14 +16,12 @@ class OrderController extends Controller
 
     //View single order
     public function show(Order $order) {
-        //return view('admin.order.show', compact('order'));
         $statuses = Order::STATUSES;
         return view('admin.order.show', compact('order', 'statuses'));
     }
 
     //Edit single order
     public function edit(Order $order) {
-        //return view('admin.order.edit', compact('order'));
         $statuses = Order::STATUSES;
         return view('admin.order.edit', compact('order', 'statuses'));
     }
