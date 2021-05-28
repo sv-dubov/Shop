@@ -16,7 +16,6 @@
                class="btn btn-light">Reset</a>
         </form>
     </div>
-    <h5 class="bg-info text-white p-2 mb-4">Category's products</h5>
     <div class="row">
         @foreach ($products as $product)
             @include('catalog.partial.product', ['product' => $product])

@@ -5,7 +5,7 @@
         </div>
         <div class="card-body p-0">
             @if ($category->image)
-                @php $url = url('storage/catalog/category/thumb/' . $category->image) @endphp
+                @php($url = url('storage/catalog/category/thumb/' . $category->image))
                 <img src="{{ $url }}" class="img-fluid" alt="">
             @else
                 <img src="https://via.placeholder.com/300x150" class="img-fluid" alt="">

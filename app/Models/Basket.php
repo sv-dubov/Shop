@@ -27,6 +27,7 @@ class Basket extends Model
         if ($count == 0) {
             return;
         }
+        $id = (int)$id;
         if ($this->products->contains($id)) {
             $pivotRow = $this->products()->where('product_id', $id)->first()->pivot;
             $quantity = $pivotRow->quantity + $count;
@@ -47,8 +48,29 @@ class Basket extends Model
         $this->touch();
     }
 
-    public static function getBasket() {
+    public function clear() {
+        $this->products()->detach();
+        $this->touch();
+    }
+
+    public function getAmount() {
+        $amount = 0.0;
+        foreach ($this->products as $product) {
+            $amount = $amount + $product->price * $product->pivot->quantity;
+        }
+        return $amount;
+    }
+
+    public static function getCount() {
         $basket_id = request()->cookie('basket_id');
+        if (empty($basket_id)) {
+            return 0;
+        }
+        return self::getBasket()->products->count();
+    }
+
+    public static function getBasket() {
+        $basket_id = (int)request()->cookie('basket_id');
         if (!empty($basket_id)) {
             try {
                 $basket = Basket::findOrFail($basket_id);
@@ -60,21 +82,5 @@ class Basket extends Model
         }
         Cookie::queue('basket_id', $basket->id, 525600);
         return $basket;
-    }
-
-    public static function getCount() {
-        $basket_id = request()->cookie('basket_id');
-        if (empty($basket_id)) {
-            return 0;
-        }
-        return self::getBasket()->products->count();
-    }
-
-    public function getAmount() {
-        $amount = 0.0;
-        foreach ($this->products as $product) {
-            $amount = $amount + $product->price * $product->pivot->quantity;
-        }
-        return $amount;
     }
 }

@@ -22,10 +22,6 @@ class Category extends Model
         ];
     }
 
-    public function getProducts() {
-        return $this->hasMany(Product::class);
-    }
-
     public function products() {
         return $this->hasMany(Product::class);
     }
@@ -34,8 +30,23 @@ class Category extends Model
         return $this->hasMany(Category::class, 'parent_id');
     }
 
+    public function descendants() {
+        return $this->hasMany(Category::class, 'parent_id')->with('descendants');
+    }
+
     public static function roots() {
         return self::where('parent_id', 0)->with('children')->get();
+    }
+
+    public static function hierarchy() {
+        return self::where('parent_id', 0)->with('descendants')->get();
+    }
+
+    public function validParent($id) {
+        $id = (integer)$id;
+        $ids = $this->getAllChildren($this->id);
+        $ids[] = $this->id;
+        return ! in_array($id, $ids);
     }
 
     public static function getAllChildren($id) {

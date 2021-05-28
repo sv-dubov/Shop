@@ -22,7 +22,7 @@
                                 @endif
                             </div>
                             @if($product->image)
-                                @php $url = url('storage/catalog/product/image/' . $product->image) @endphp
+                                @php($url = url('storage/catalog/product/image/' . $product->image))
                                 <img src="{{ $url }}" alt="" class="img-fluid">
                             @else
                                 <img src="https://via.placeholder.com/600x300" alt="" class="img-fluid">

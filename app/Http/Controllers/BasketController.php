@@ -16,7 +16,8 @@ class BasketController extends Controller
 
     public function index() {
         $products = $this->basket->products;
-        return view('basket.index', compact('products'));
+        $amount = $this->basket->getAmount();
+        return view('basket.index', compact('products', 'amount'));
     }
 
     public function checkout(Request $request) {
@@ -70,12 +71,11 @@ class BasketController extends Controller
             'phone' => 'required|max:255',
             'address' => 'required',
         ]);
-        $basket = Basket::getBasket();
         $user_id = auth()->check() ? auth()->user()->id : null;
         $order = Order::create(
-            $request->all() + ['amount' => $basket->getAmount(), 'user_id' => $user_id]
+            $request->all() + ['amount' => $this->basket->getAmount(), 'user_id' => $user_id]
         );
-        foreach ($basket->products as $product) {
+        foreach ($this->basket->products as $product) {
             $order->items()->create([
                 'product_id' => $product->id,
                 'name' => $product->name,
@@ -84,7 +84,7 @@ class BasketController extends Controller
                 'cost' => $product->price * $product->pivot->quantity,
             ]);
         }
-        $basket->delete();
+        $this->basket->clear();
         return redirect()->route('basket.success')->with('order_id', $order->id);
     }
 

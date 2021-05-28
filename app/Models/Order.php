@@ -24,6 +24,10 @@ class Order extends Model
         return $this->hasMany(OrderItem::class);
     }
 
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
     public function getCreatedAtAttribute($value) {
         return Carbon::createFromFormat('Y-m-d H:i:s', $value)->timezone('Europe/Kiev');
     }

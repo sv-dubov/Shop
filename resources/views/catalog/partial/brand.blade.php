@@ -1,6 +1,6 @@
 <div class="col-md-4 mb-4">
     <div class="card list-item">
-        <div class="card-header px-1">
+        <div class="card-header">
             <h3 class="mb-0">{{ $brand->name }}</h3>
         </div>
         <div class="card-body p-0">
@@ -11,7 +11,7 @@
                 <img src="https://via.placeholder.com/300x150" class="img-fluid" alt="">
             @endif
         </div>
-        <div class="card-footer px-1">
+        <div class="card-footer">
             <a href="{{ route('catalog.brand', ['brand' => $brand->slug]) }}"
                class="btn btn-dark">Brand's products</a>
         </div>

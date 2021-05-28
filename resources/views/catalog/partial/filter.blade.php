@@ -18,3 +18,4 @@
            @if(request()->has('sale'))  checked @endif value="yes">
     <label class="form-check-label" for="sale-product">Sale</label>
 </div>
+<button type="submit" class="btn btn-light">Filter</button>

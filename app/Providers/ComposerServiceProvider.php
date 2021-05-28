@@ -36,9 +36,6 @@ class ComposerServiceProvider extends ServiceProvider
             $view->with(['items' => Brand::all()]);
         });
         View::composer('layout.site', function($view) {
-            $view->with(['positions' => Basket::getBasket()->products->count()]);
-        });
-        View::composer('layout.site', function($view) {
             $view->with(['positions' => Basket::getCount()]);
         });
         View::composer('layout.partial.pages', function($view) {

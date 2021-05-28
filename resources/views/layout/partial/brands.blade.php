@@ -1,5 +1,5 @@
 <h4>Popular brands</h4>
-<ul>
+<ul id="brands-popular">
     @foreach($items as $item)
         <li>
             <a href="{{ route('catalog.brand', [$item->slug]) }}">{{ $item->name }}</a>

@@ -12,6 +12,11 @@ class ProfileController extends Controller
         return view('user.profile.index', compact('profiles'));
     }
 
+    public function profile() {
+        $profile = self::findOrFail();
+        return response()->json($profile);
+    }
+
     public function create() {
         return view('user.profile.create');
     }
