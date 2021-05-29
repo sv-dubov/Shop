@@ -18,6 +18,12 @@
 <div class="form-group">
     <textarea class="form-control" id="editor" name="content" placeholder="Content (html)" required rows="10">{{ old('content') ?? $page->content ?? '' }}</textarea>
 </div>
+<div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" name="status" id="status">
+    <label class="form-check-label" for="status">
+        Publish on site
+    </label>
+</div>
 <div class="form-group">
     <button type="submit" class="btn btn-primary">Save</button>
 </div>

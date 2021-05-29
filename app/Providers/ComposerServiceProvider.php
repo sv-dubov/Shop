@@ -39,7 +39,7 @@ class ComposerServiceProvider extends ServiceProvider
             $view->with(['positions' => Basket::getCount()]);
         });
         View::composer('layout.partial.pages', function($view) {
-            $view->with(['pages' => Page::all()]);
+            $view->with(['pages' => Page::where('status', Page::IS_PUBLIC)->get()]);
         });
     }
 }

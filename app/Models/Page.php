@@ -13,6 +13,8 @@ class Page extends Model
     use Sluggable;
 
     protected $fillable = ['parent_id', 'name', 'content'];
+    const IS_DRAFT = 0;
+    const IS_PUBLIC = 1;
 
     public function sluggable()
     {
@@ -37,5 +39,31 @@ class Page extends Model
             return 'slug'; //public part
         }
         return 'id'; //admin part
+    }
+
+    public function setDraft()
+    {
+        $this->status = Page::IS_DRAFT;
+        $this->save();
+    }
+
+    public function setPublic()
+    {
+        $this->status = Page::IS_PUBLIC;
+        $this->save();
+    }
+
+    public function toggleStatus($value)
+    {
+        if($value == null)
+        {
+            return $this->setDraft();
+        }
+        return $this->setPublic();
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
     }
 }

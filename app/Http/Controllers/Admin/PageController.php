@@ -27,6 +27,7 @@ class PageController extends Controller
             'content' => 'required'
         ]);
         $page = Page::create($request->all());
+        $page->toggleStatus($request->get('status'));
         return redirect()->route('admin.page.show', ['page' => $page->id])->with('success', 'Page was created');
     }
 
@@ -47,6 +48,7 @@ class PageController extends Controller
         ]);
         $page->slug = null; //change slug in DB
         $page->update($request->all());
+        $page->toggleStatus($request->get('status'));
         return redirect()->route('admin.page.show', ['page' => $page->id])->with('success', 'Page was edited');
     }
 
